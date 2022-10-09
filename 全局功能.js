@@ -15,7 +15,7 @@
 (function () {
     if (self === top) { //不添加在iframe中
         let _mmove = document.onmousemove || function () { };
-        let hidd_left = -90;
+        let hidd_left = -95;
         let elm = {
             style: 'border:none;width:auto;height:35px;color:#000;background-color:#fff0;font:bold 17px/20px caption;',
             onmousedown: function (e) {
