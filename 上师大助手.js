@@ -17,20 +17,24 @@
             document.getElementById('lnkReport').click();
         }
         if (document.URL == 'https://yqfk.shnu.edu.cn/DayReport.aspx') {
-            var AutoSubmit = function () {
+            let AutoSubmit = function () {
+				if(!document.getElementById('p1_ChengNuo-inputEl')) return false;
                 document.getElementById('p1_ChengNuo-inputEl').click(); //我承诺阿巴阿巴
                 //document.getElementById('fineui_5').children[1]; //随申码
                 //document.getElementById('fineui_6').children[1]; //行程卡
                 document.getElementById('fineui_9-inputEl').click(); //在上海校内
                 document.getElementById('fineui_12-inputEl').click(); //住校
                 document.getElementById('fineui_15-inputEl').click(); //不是家庭住址
-                document.getElementById('fineui_17-inputEl').click(); //是
-                document.getElementById('fineui_19-inputEl').click(); //是
+                document.getElementById('fineui_18-inputEl').click(); //否
+                document.getElementById('fineui_20-inputEl').click(); //否
                 document.getElementById('fineui_22-inputEl').click(); //否
                 document.getElementById('p1_ctl01_btnSubmit').onclick = () => { document.getElementById('fineui_37').click(); } //直接提交
                 document.getElementById('p1_ctl01_btnSubmit').click(); //自动提交
+				return true;
             };
-            window.onload = AutoSubmit;
+            let key = setInterval(()=>{
+				if(AutoSubmit()) clearInterval(key);
+			}, 100);
         }
     }
 
@@ -38,8 +42,8 @@
     {
         if (document.URL == 'http://shnu.fy.chaoxing.com/portal') {
             // location.href = 'http://passport2.chaoxing.com/logout.html?refer=http://shnu.fy.chaoxing.com/logout.jsp';
-            var enter = document.getElementsByClassName('courseZone fr')[0].children[1];
-            if (enter) { enter.target = '_self', enter.click(); }
+            var enter = document.getElementsByClassName('courseZone fr')[0];
+            if (enter) { enter.children[1].target = '_self', enter.children[1].click(); }
             else { document.getElementsByClassName('loginSub')[1].click(); } //统一认证登录
         }
     }
