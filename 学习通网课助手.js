@@ -100,6 +100,7 @@
 
     //直播回放
     if (document.URL.includes('zhibo.chaoxing.com') && !document.URL.includes('iframe')) {
+        console.clear();
         console.log('脚本加载完成');
         let n = 0;
         setInterval(() => {
