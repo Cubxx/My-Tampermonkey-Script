@@ -17,7 +17,7 @@
         let _mmove = document.onmousemove || function () { };
         let hidd_left = -95;
         let elm = {
-            style: 'border:none;width:auto;height:35px;color:#fff;background-color:#fff0;font:bold 17px/20px caption;',
+            style: 'padding:0;border:none;width:auto;height:35px;color:#fff;background-color:#fff0;font:bold 17px/20px caption;',
             onmousedown: function (e) {
                 let _this = this;
                 var ex = e.clientX, ey = e.clientY,
@@ -151,28 +151,6 @@
     //谷歌学术镜像
     if (document.URL.includes('xs.zidianzhan.net')) {
         document.getElementById('mainshadow').remove();
-    }
-
-    //超职教育
-    if (document.URL.includes('www.chaozhiedu.com/pc/#/')) {
-        let stop = setInterval(() => {
-            let con = document.getElementsByClassName('course-list')[0];
-            con && (con.style.cssText = 'height:auto!important', clearInterval(stop))
-        }, 500)
-    }
-    if (document.URL.includes('open.talk-fun.com/player.php')) {
-        window.onload = function () {
-            let stop = setInterval(() => {
-                let intro = document.getElementsByClassName('teaser-container')[0]
-                intro && (
-                    clearInterval(stop),
-                    intro.style.display = 'none',
-                    MT.pause = () => { },
-                    Mt.play(),
-                    document.getElementsByClassName('player_speed_type')[0].children[5].click()
-                );
-            }, 1000);
-        }
     }
 
     //document.designMode='on';

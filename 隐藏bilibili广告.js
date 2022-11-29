@@ -35,7 +35,7 @@
             if (url.includes('member.bilibili.com/york')) stop_num = 1; //投稿视频界面
             if (url.includes('bilibili.com/video')) stop_num = 2; //视频页删除多次*/
             for (var ad of ads) {
-                ad.style.display != 'none' && (loop_valid = true, ad.remove())
+                ad.style.display != 'none' && (loop_valid = true, ad.style.display='none')
             }
             // loop_valid && (loop_num++, console.log('隐藏一次'));
             if (url.includes('bilibili.com/video')) ads.length == 0 && clearInterval(stop);
