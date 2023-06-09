@@ -84,7 +84,10 @@
                         btn.update?.();
                     });
                 },
-                debug() { this.onmouseleave = null; }
+                debug() {
+                    this.onmouseenter();
+                    this.onmouseleave = null;
+                }
             },
             arr: configs.map(e => {
                 //参数面板
@@ -121,7 +124,10 @@
                 },
             }
         });
-        $tm.onloadFuncs.push(e => $('#bilibili-player').insertBefore(group, $('#bilibili-player').children[0]));
+        $tm.onloadFuncs.push(e => {
+            $('#bilibili-player').insertBefore(group, $('#bilibili-player').children[0]);
+            // group.debug();
+        });
         return group;
     }
     const globalBtnArr = [{
@@ -425,7 +431,6 @@
             }
         }]);
         btnGrp.update();
-        btnGrp.debug();
     });
 
     //番剧
