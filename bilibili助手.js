@@ -373,7 +373,7 @@
                             tag: 'label', innerHTML, style: 'padding-right: 5px;',
                         }, {
                             box: { tag: 'select', name, style: 'outline: none;width: 50px;', },
-                            arr: arr.map(([k, v, selected]) => { return { innerHTML: k, value: v, selected } }),
+                            arr: arr.map(([innerHTML, value, selected]) => { return { innerHTML, value, selected } }),
                             defaults: { tag: 'option', }
                         }],
                     }
