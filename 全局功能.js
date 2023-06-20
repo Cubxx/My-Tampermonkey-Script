@@ -150,7 +150,7 @@
                 defaults: {
                     tag: 'input', type: 'button',
                     style: `margin-bottom: 3px;padding:0;border:1px solid;border-radius: 10px;
-                        min-width:100%;height:35px;background-color: field;
+                        min-width:100%;max-width:100%;height:35px;background-color: field;
                         font:lighter 17px/20px caption;outline: none;`,
                     func1() { },
                     func2() { this.group.attachment.style.display = 'none'; },
@@ -270,6 +270,7 @@
                         'baxia-dialog', //高德地图
                         'sufei-dialog', //高德地图
                         'app-download-panel', //高德地图
+                        'pop-up-comp', //有道翻译
                     ],
                     id: [
                         'player-ads', //ytb
@@ -424,6 +425,7 @@
     });
     $tm.urlFunc(/www.zhihu.com\/question/, () => {
         $('.App-main .QuestionHeader-title').title = `创建时间 ${$('meta[itemprop=dateCreated]').content}\n修改时间 ${$('meta[itemprop=dateModified]').content}`;
+        $('header').style.display = 'none';
     });
     $tm.urlFunc(/zhuanlan.zhihu.com\/p/, () => {
         $('article').insertBefore($('.ContentItem-time'), $('.Post-RichTextContainer'));
@@ -494,7 +496,7 @@
                 }, { childList: true });
                 this.addEventListener('mousedown', e => {
                     e.preventDefault();
-                    if (e.target.tagName != 'H4') {
+                    if (!/(H4|DIV)/.test(e.target.tagName)) {
                         const elm = e.target.closest('div[id]');
                         const { scale, position: orig } = this.matrix.call(elm, 'get');
                         const [dx, dy] = [orig[0] - e.clientX, orig[1] - e.clientY];
@@ -510,7 +512,7 @@
                 });
                 this.addEventListener('wheel', e => {
                     e.preventDefault();
-                    if (e.target.tagName != 'H4') {
+                    if (!/(H4|DIV)/.test(e.target.tagName)) {
                         const elm = e.target.closest('div[id]');
                         const { scale: orig, position } = this.matrix.call(elm, 'get');
                         const scale = (orig - Math.sign(e.deltaY) * 0.1).clamp(0.1, 2);
@@ -519,7 +521,7 @@
                 });
                 this.addEventListener('contextmenu', e => {
                     e.preventDefault();
-                    if (e.target.tagName != 'H4') {
+                    if (!/(H4|DIV)/.test(e.target.tagName)) {
                         const elm = e.target.closest('div[id]');
                         this.matrix.call(elm, 'set');
                     }
