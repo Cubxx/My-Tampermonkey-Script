@@ -47,7 +47,7 @@
             }, {
                 name: '地址查找',
                 apis: [
-                    ['amap', 'https://ditu.amap.com/search?query='],
+                    ['amap', 'https://ditu.amap.com/search?query=', true],
                     ['google', 'https://www.google.com/maps/search/'],
                     ['bing', 'https://cn.bing.com/maps/?setlang=zh-Hans&q='],
                 ],
@@ -56,17 +56,18 @@
                     if (!address) return this.did = false;
                     this.group.attachment.innerHTML = `<b style="white-space: nowrap;">${address}</b>`
                         + $tm.addElms({
-                            arr: this.apis.map(e => {
-                                return {
-                                    href: e[1] + encodeURI(address),
-                                    innerText: e[0],
-                                }
+                            arr: this.apis.map(([innerText, href, autoClick]) => {
+                                return { innerText, href, autoClick };
                             }),
                             defaults: {
                                 tag: 'a',
                                 style: `text-decoration: none;display: block;padding: 2px;`,
                                 target: '_blank',
-                                init() { this.title = this.href; }
+                                init() {
+                                    this.href += encodeURI(address);
+                                    this.title = this.href;
+                                    this.autoClick && this.click();
+                                }
                             }
                         }).map(e => e.outerHTML).join('');
                 }
@@ -211,12 +212,22 @@
                     if (parseFloat(boxGrp.style.left) < 0) boxGrp.style.left = hiddLeft + 'px';
                     if (parseFloat(boxGrp.style.top) < 0) boxGrp.style.top = '0px';
                     //btn单击
-                    if (btnGrp.contains(e.target) && !ismove) {
-                        const btn = e.target;
-                        if (btn.did = !btn.did) {
-                            btn.func1();
-                            [...btnGrp.$('input[type=button]', 1)].filter(e => e != btn).forEach(e => e.did = false);
-                        } else btn.func2();
+                    if (!ismove && btnGrp.contains(e.target)) {
+                        switch (e.button) {
+                            case 0: { //左键
+                                const btn = e.target;
+                                if (btn.did = !btn.did) {
+                                    btn.func1();
+                                    [...btnGrp.$('input[type=button]', 1)].filter(e => e != btn).forEach(e => e.did = false);
+                                } else btn.func2();
+                                break;
+                            }
+                            case 1: break; //中键
+                            case 2: { //右键
+                                e.preventDefault();
+                                break;
+                            }
+                        }
                     }
                 }, { once: true });
             });
