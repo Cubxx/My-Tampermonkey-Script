@@ -78,7 +78,7 @@
                     $tm.urlFunc(/bing.com\/search/, e => {
                         text ||= $('#sb_form_q')?.value
                     });
-                    open(`https://www.bing.com/search?showconv=1&q=${text}&cc=us`);
+                    open(`https://www.bing.com/search?showconv=0&q=${text}&cc=us`);
                 }
             }, {
                 name: 'AI',
