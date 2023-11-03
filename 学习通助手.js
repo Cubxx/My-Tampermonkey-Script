@@ -17,8 +17,8 @@
             const list = $('.posCatalog_select', 1).filter(e => e.id.slice(0, 3) === 'cur'); //右侧菜单所有小节
             let cur;
             for (let i = 0; i < list.length; i++) {
-                //选择2个未完成点的
-                if (list[i].$('input')?.value === '2') {
+                //选择未完成的
+                if (list[i].$('input')?.value === '1') {
                     cur = i - 1;
                     break;
                 }
@@ -36,30 +36,28 @@
     //视频
     $tm.urlFunc(/ananas\/modules\/video\/index.html\?v=/, () => {
         $tm.invokeUntilNoError = async () => {
-            const videoElm = $('video#video_html5_api');
-            videoElm.autoplay = true;
-            videoElm.muted = true;
+            const videoElm = Object.assign($('video#video_html5_api'), {
+                autoplay: true,
+                muted: true,
+                volume: 0
+            });
             await videoElm.play();
-            videoElm.volume = 0;
             const player = videojs.getPlayer(videoElm.playerId);
+            player._v = videoElm;
             player.playbackRate = () => videoElm.playbackRate;
             player.off('seeked'); //进度条解锁
             Ext.fly(top).un('mouseout'); //鼠标解锁
             Ext.fly(top).on('visibilitychange', e => { //切换页面继续播放
-                const stop = setInterval(() => {
+                setTimeout(() => {
                     if (player.paused()) {
                         player.play();
-                        clearInterval(stop);
                         console.log('切换页面继续播放');
                     }
                 }, 1e2);
             });
             parent.document.$('.ans-job-icon').nodeListener(() => top.nextVideo(), { attributes: true }); //完成任务点后下一节
-            if (parent.document.$('.ans-job-icon').ariaLabel === '任务点已完成') { //
-                top.document.$('#dct2').click();
-            }
             // player.options_.plugins.seekBarControl.sendLog(player, 'playing', videoElm.duration.toFixed(0) - 1, player.seekBarControl());
-            self.player = player;
+            top._p = player;
         };
     });
 
