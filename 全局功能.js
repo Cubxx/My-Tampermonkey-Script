@@ -303,6 +303,7 @@
             'gitee.com/link': null, // gitee
             'www.jianshu.com/go-wild': sp => sp.get('url'), //简书
             'docs.qq.com/scenario/link.html': sp => sp.get('url'), //腾讯文档
+            'afdian.net/link': null, //爱发电
         };
         for (let path in arr) {
             if (location.href.includes(path)) {
