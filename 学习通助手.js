@@ -7,6 +7,8 @@
 // @match      https://*.chaoxing.com/*
 // @icon         https://mooc.chaoxing.com/favicon.ico
 // @require      https://github.com/Cubxx/My-Tampermonkey-Script/raw/master/%24tm.js
+// @updateURL    https://github.com/Cubxx/My-Tampermonkey-Script/raw/master/学习通助手.js
+// @downloadURL  https://github.com/Cubxx/My-Tampermonkey-Script/raw/master/学习通助手.js
 // @grant        none
 // ==/UserScript==
 

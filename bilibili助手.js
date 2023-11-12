@@ -8,6 +8,8 @@
 // @exclude     https://api.bilibili.com/*
 // @exclude     https://api.vc.bilibili.com/*
 // @require     https://github.com/Cubxx/My-Tampermonkey-Script/raw/master/%24tm.js
+// @updateURL    https://github.com/Cubxx/My-Tampermonkey-Script/raw/master/bilibili助手.js
+// @downloadURL  https://github.com/Cubxx/My-Tampermonkey-Script/raw/master/bilibili助手.js
 // @icon         https://www.bilibili.com/favicon.ico
 // @grant        none
 // ==/UserScript==
