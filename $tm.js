@@ -64,7 +64,7 @@ const $tm = (function () {
     const onloadFns = [];
     return {
         libs: {
-            'axios': 'https://unpkg.com/axios/dist/axios.min.js',
+            'axios': 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
             'Cookies': 'https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js',
             'FFmpeg': 'https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js', // 0.11.6
             'html2canvas': "https://html2canvas.hertzen.com/dist/html2canvas.min.js",

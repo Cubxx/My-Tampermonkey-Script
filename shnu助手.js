@@ -15,7 +15,7 @@
 (function () {
     'use strict';
     //学习通免登录
-    $tm.urlFunc(/^http\:\/\/shnu.fy.chaoxing.com\/portal$/, () => {
+    $tm.urlFunc(/shnu.fy.chaoxing.com\/portal$/, () => {
         // location.href = 'http://passport2.chaoxing.com/logout.html?refer=http://shnu.fy.chaoxing.com/logout.jsp';
         const enter = $('.courseZone');
         if (enter) { enter.$('a').target = '_self', enter.$('a').click(); }
