@@ -488,7 +488,7 @@
                                 ffmpeg.setProgress(({ ratio }) => {
                                     toast(`正在转换格式${newFormat} ${1e2 * ratio.toFixed(2)}%`, '下载-转换格式');
                                 });
-                                await ffmpeg.run(...fileArgs.flat(), ...convertArgs, '-f', newFormat, 'output');
+                                const r = await ffmpeg.run(...fileArgs.flat(), ...convertArgs, '-f', newFormat, 'output');
                                 const buffer = await ffmpeg.FS('readFile', 'output').buffer;
                                 $tm.download(new Blob([buffer], {
                                     type: MIMEtype
@@ -543,8 +543,6 @@
                         let downloadBytes = 0;
                         let chunks = [];
                         const reader = body.getReader();
-                        const freq = 1e2; // 获取进度的周期
-                        const toast_throttle = toast.throttle(freq); //节流
                         !function pump() {
                             reader.read().then(({ value, done }) => {
                                 if (done) {
@@ -553,7 +551,7 @@
                                 }
                                 downloadBytes += value.length;
                                 chunks.push(value);
-                                toast_throttle(`正在获取资源${sign} ${(1e2 * downloadBytes / totalBytes).toFixed(2)}%`, sign);
+                                toast(`正在获取资源${sign} ${(1e2 * downloadBytes / totalBytes).toFixed(2)}%`, sign);
                                 pump();
                             }).catch(reject);
                         }();
