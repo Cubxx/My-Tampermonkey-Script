@@ -49,8 +49,7 @@
             run('update');
         }
         function showCfg() {
-            console.log(cfg);
-            ui.snackbar.show('别名列表已输出至控制台');
+            alert('别名列表\n' + JSON.stringify(cfg, null, 4));
         }
         /** @param {'show' | 'update'} method */
         function run(method) {
@@ -68,8 +67,7 @@
         function search(target) {
             const [alias, content] = text.split(':');
             if (!util.hasOwnKey(cfg, alias)) {
-                ui.snackbar.show(`${alias} 别名无效`);
-                setTimeout(showCfg, 2e3);
+                ui.snackbar.show(`${alias} 别名无效`, 'crimson');
                 return;
             }
             window.open(cfg[alias] + content, target);
@@ -118,7 +116,7 @@
         'keydown',
         (e) => {
             if (e.ctrlKey && e.code === 'KeyC') copyText();
-            if (e.shiftKey && e.code === 'KeyS') advancedSearch();
+            if (e.altKey && e.code === 'KeyQ') advancedSearch();
         },
         true,
     );
